@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".ui.TMapShowActivity" />
         <activity android:name=".ui.TSimpleMapActivity" />
-        <activity android:name=".ui.TGoogleTileActivity"></activity>
+        <activity android:name=".ui.TGoogleTileActivity" />
+        <activity android:name=".ui.gaode.TgdGoogleActivity"></activity>
     </application>
 
 </manifest>
