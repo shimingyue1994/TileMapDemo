@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.yue.tilemap"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation "io.reactivex.rxjava2:rxjava:2.1.12"
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    //the map engine 地图引擎 基础包
+    implementation 'org.osmdroid:osmdroid-android:6.0.1'
+
+/*    wms Web地图服务（Web map service - WMS) Web 地图服务能够根据用户的请求返回相应的地图（包括PNG，GIF，JPEG等）*/
+/*    指定图源服务器获取地图图片 specifically GeoServer*/
+//    compile 'org.osmdroid:osmdroid-wms:(INSERT_VERSION_HERE)'
+//    不知道干啥的
+//    compile 'org.osmdroid:osmdroid-mapsforge:(INSERT_VERSION_HERE)'
+//     离线包 缓存图片的框架
+//    compile 'org.osmdroid:osmdroid-geopackage:(INSERT_VERSION_HERE)'
+//     支持第三方插件google maps
+//    compile 'org.osmdroid:osmdroid-third-party:(INSERT_VERSION_HERE)'
+
+}
