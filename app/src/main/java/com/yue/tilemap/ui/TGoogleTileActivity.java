@@ -26,7 +26,7 @@ public class TGoogleTileActivity extends AppCompatActivity {
         //设置缩放按钮 此时可以通过手指进行缩放
         mBinging.mapTgoogle.setBuiltInZoomControls(true);
         mBinging.mapTgoogle.setMultiTouchControls(true);
-        mBinging.mapTgoogle.setTilesScaledToDpi(true);
+//        mBinging.mapTgoogle.setTilesScaledToDpi(true);
 
         //获取地图控制器
         IMapController mapController = mBinging.mapTgoogle.getController();
@@ -49,7 +49,7 @@ public class TGoogleTileActivity extends AppCompatActivity {
                 19,
                 256,
                 ".png",
-                new String[]{str3});
+                new String[]{str1, str2, str3, str4});
         mBinging.mapTgoogle.setTileSource(googleMapsTileSource);
     }
 }
