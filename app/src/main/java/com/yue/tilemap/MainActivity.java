@@ -28,7 +28,7 @@ import java.util.List;
  * 瓦片地图 显示google瓦片  两种方案 OpenStreetMap 或高德地图
  * 还差缓存 和范围计算
  * <p>
- * WMS：坐标系转换问题 如果是火星坐标系统，直接贴在高德地图上，如果是google 贴在openstreetmap上
+ * WMS：坐标系转换问题 如果是火星坐标系统，直接贴在高德地图上，如果是google 贴在openstreetmap上或者google地图上
  */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
