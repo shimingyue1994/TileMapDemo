@@ -27,6 +27,7 @@ import java.util.List;
 /**
  * 瓦片地图 显示google瓦片  两种方案 OpenStreetMap 或高德地图
  * 还差缓存 和范围计算 WMS瓦片地图服务
+ * 坐标系转换问题
  */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
