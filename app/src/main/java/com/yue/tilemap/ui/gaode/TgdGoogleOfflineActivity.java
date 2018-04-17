@@ -33,6 +33,7 @@ public class TgdGoogleOfflineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_tgd_google_offline);
+        setTitle("高德地图google离线地图");
         initGdMap(savedInstanceState);
     }
 

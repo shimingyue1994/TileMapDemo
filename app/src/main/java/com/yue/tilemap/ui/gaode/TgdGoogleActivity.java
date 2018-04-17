@@ -32,6 +32,7 @@ public class TgdGoogleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_tgd_google);
+        setTitle("高德地图显示google图源");
         initGdMap(savedInstanceState);
     }
 
