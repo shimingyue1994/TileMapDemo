@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.model.TileOverlayOptions;
@@ -11,7 +12,9 @@ import com.amap.api.maps.model.UrlTileProvider;
 import com.yue.tilemap.R;
 import com.yue.tilemap.bean.NetBean;
 import com.yue.tilemap.databinding.ActivityTgdGoogleOfflineBinding;
+import com.yue.tilemap.utils.CommonUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -59,8 +62,13 @@ public class TgdGoogleOfflineActivity extends AppCompatActivity {
      * 初始化瓦片
      */
     private void initTile(Bundle savedInstanceState) {
-        showOnlineTile();
-
+        if (CommonUtils.isNetworkAvailable(this)) {
+//            Toast.makeText(context, "有网啦", Toast.LENGTH_SHORT).show();
+            showOnlineTile();
+        } else {
+//            Toast.makeText(context, "没有网", Toast.LENGTH_SHORT).show();
+            showOffLineTile();
+        }
     }
 
 
@@ -95,7 +103,7 @@ public class TgdGoogleOfflineActivity extends AppCompatActivity {
      * 离线瓦片 显示
      */
     private void showOffLineTile() {
-
+        Toast.makeText(this, "离线瓦片显示", Toast.LENGTH_SHORT).show();
     }
 
     //EventBus消息接收处
