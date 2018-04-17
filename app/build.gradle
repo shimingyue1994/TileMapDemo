@@ -20,6 +20,38 @@ android {
     dataBinding {
         enabled = true
     }
+
+    signingConfigs {
+        signConfig {
+            keyAlias '青岛卓尔软件开发有限公司'
+            keyPassword 'zrsoft'
+            storeFile file('E:/zrsoft.keystore')
+            storePassword 'zrsoft'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('E:/debugkeystore/debug.keystore')
+            storePassword 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false //开启混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            shrinkResources true//忽略未用到的资源文件打包进apk
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true //开启混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            shrinkResources true//忽略未用到的资源文件打包进apk
+            signingConfig signingConfigs.signConfig
+        }
+    }
 }
 
 dependencies {
@@ -44,5 +76,11 @@ dependencies {
 //    compile 'org.osmdroid:osmdroid-geopackage:(INSERT_VERSION_HERE)'
 //     支持第三方插件google maps
 //    compile 'org.osmdroid:osmdroid-third-party:(INSERT_VERSION_HERE)'
+
+
+    //高德地图
+    implementation 'com.amap.api:3dmap:6.1.0'
+    implementation 'com.amap.api:location:3.8.0'
+    implementation 'com.amap.api:search:6.1.0'
 
 }
