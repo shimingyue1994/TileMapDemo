@@ -68,10 +68,10 @@ public class TgdGoogleActivity extends AppCompatActivity {
                     Log.i("TileOverlayActivity", "url:" + String.format(googleUrl03, zoom, x, y));
 //					return new URL(String.format(url, zoom, x, y));
 //                    设置缩放级别
-                    if (zoom > 16)
-                        zoom = 16;
-                    else if (zoom < 0)
-                        zoom = 0;
+//                    if (zoom > 16)
+//                        zoom = 16;
+//                    else if (zoom < 0)
+//                        zoom = 0;
                     return new URL(googleUrl03 + "&x=" + x + "&y=" +
                             y + "&z=" + zoom);
                 } catch (Exception e) {
