@@ -3,11 +3,16 @@ package com.yue.tilemap.ui.gaode;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.TileOverlayOptions;
+import com.amap.api.maps.model.UrlTileProvider;
 import com.yue.tilemap.R;
 import com.yue.tilemap.databinding.ActivityTgdGoogleBinding;
+
+import java.net.URL;
 
 /**
  * google地图贴图贴在高德地图上
@@ -16,7 +21,10 @@ public class TgdGoogleActivity extends AppCompatActivity {
 
     private AMap aMap;
     final String url = "http://a.tile.openstreetmap.org/%d/%d/%d.png";
-    final String googleUrl = "http://mt0.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
+    String googleUrl01 = "http://mt0.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
+    String googleUrl02 = "http://mt1.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
+    String googleUrl03 = "http://mt2.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
+    String googleUrl04 = "http://mt3.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
     private ActivityTgdGoogleBinding mBinding;
 
     @Override
@@ -36,6 +44,36 @@ public class TgdGoogleActivity extends AppCompatActivity {
 //        MapsInitializer.sdcardDir =OffLineMapUtils.getSdCacheDir(this);
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
         mBinding.mapTgdGoogle.onCreate(savedInstanceState);
+        if (aMap == null) {
+            aMap = mBinding.mapTgdGoogle.getMap();
+            initTile(savedInstanceState);
+        }
+    }
+
+    /**
+     * 初始化贴片设置
+     */
+    private void initTile(Bundle savedInstanceState) {
+        aMap.addTileOverlay(new TileOverlayOptions().tileProvider(new UrlTileProvider(256, 256) {
+
+            @Override
+            public URL getTileUrl(int x, int y, int zoom) {
+                try {
+                    Log.i("TileOverlayActivity", "url:" + String.format(googleUrl03, zoom, x, y));
+//					return new URL(String.format(url, zoom, x, y));
+                    return new URL(googleUrl03 + "&x=" + x + "&y=" +
+                            y + "&z=" + zoom);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        })
+                .diskCacheEnabled(true)
+                .diskCacheDir("/storage/emulated/0/amap/cache")
+                .diskCacheSize(100000)
+                .memoryCacheEnabled(true)
+                .memCacheSize(100000));
     }
 
 
