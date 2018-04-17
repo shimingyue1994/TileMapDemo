@@ -18,6 +18,7 @@ import com.yue.tilemap.databinding.ActivityMainBinding;
 import com.yue.tilemap.ui.TGoogleTileActivity;
 import com.yue.tilemap.ui.TMapShowActivity;
 import com.yue.tilemap.ui.TSimpleMapActivity;
+import com.yue.tilemap.ui.gaode.TgdGoogleActivity;
 
 import junit.framework.Test;
 
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mList.add(new MainItem("简单地图显示openstreetmap", "简单地图显示openstreetmap" + TSimpleMapActivity.class.getSimpleName(), TSimpleMapActivity.class));
         mList.add(new MainItem("测试图源显示", "测试TestActivity01" + TMapShowActivity.class.getSimpleName(), TMapShowActivity.class));
         mList.add(new MainItem("测试google图源openstreetmap", "测试google图源openstreetmap" + TGoogleTileActivity.class.getSimpleName(), TGoogleTileActivity.class));
+        mList.add(new MainItem("测试google图源--高德地图", "测试google图源高德地图" + TgdGoogleActivity.class.getSimpleName(), TgdGoogleActivity.class));
     }
 
 
