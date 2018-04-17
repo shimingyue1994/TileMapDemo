@@ -11,7 +11,11 @@ import com.amap.api.maps.model.UrlTileProvider;
 import com.yue.tilemap.R;
 import com.yue.tilemap.databinding.ActivityTgdGoogleOfflineBinding;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.net.URL;
+import java.util.HashMap;
 
 /**
  * 离线加载地图
@@ -93,6 +97,11 @@ public class TgdGoogleOfflineActivity extends AppCompatActivity {
 
     }
 
+    //EventBus消息接收处
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refreshView(HashMap<String, Object> map) {
+        
+    }
 
     @Override
     protected void onDestroy() {
