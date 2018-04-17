@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.yue.tilemap.bean.NetBean;
 import com.yue.tilemap.utils.CommonUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -23,14 +24,14 @@ public class NetWorkStateReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (CommonUtils.isNetworkAvailable(context)) {
 //            Toast.makeText(context, "有网啦", Toast.LENGTH_SHORT).show();
-            Map map = new HashMap();
-            map.put("isnet", true);
-            EventBus.getDefault().postSticky(map);
+            NetBean netBean = new NetBean();
+            netBean.setConn(true);
+            EventBus.getDefault().postSticky(netBean);
         } else {
 //            Toast.makeText(context, "没有网", Toast.LENGTH_SHORT).show();
-            Map map = new HashMap();
-            map.put("isnet", false);
-            EventBus.getDefault().postSticky(map);
+            NetBean netBean = new NetBean();
+            netBean.setConn(false);
+            EventBus.getDefault().postSticky(netBean);
         }
     }
 }

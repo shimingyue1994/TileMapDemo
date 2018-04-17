@@ -9,6 +9,7 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.model.TileOverlayOptions;
 import com.amap.api.maps.model.UrlTileProvider;
 import com.yue.tilemap.R;
+import com.yue.tilemap.bean.NetBean;
 import com.yue.tilemap.databinding.ActivityTgdGoogleOfflineBinding;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -99,8 +100,8 @@ public class TgdGoogleOfflineActivity extends AppCompatActivity {
 
     //EventBus消息接收处
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void refreshView(HashMap<String, Object> map) {
-        
+    public void refreshView(NetBean netBean) {
+
     }
 
     @Override
