@@ -23,7 +23,7 @@ public class TgdGoogleActivity extends AppCompatActivity {
     final String url = "http://a.tile.openstreetmap.org/%d/%d/%d.png";
     String googleUrl01 = "http://mt0.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
     String googleUrl02 = "http://mt1.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
-    String googleUrl03 = "http://mt2.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
+    String googleUrl03 = "http://mt2.google.cn/vt/lyrs=y&hl=zh-CN&gl=cn";
     String googleUrl04 = "http://mt3.google.cn/vt/lyrs=m&hl=zh-CN&gl=cn";
     private ActivityTgdGoogleBinding mBinding;
 
@@ -34,6 +34,11 @@ public class TgdGoogleActivity extends AppCompatActivity {
         initGdMap(savedInstanceState);
     }
 
+    /**
+     * 高德地图初始化
+     *
+     * @param savedInstanceState
+     */
     private void initGdMap(Bundle savedInstanceState) {
         /*
          * 设置离线地图存储目录，在下载离线地图或初始化地图设置;
