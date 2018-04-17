@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.MapsInitializer;
 import com.amap.api.maps.model.TileOverlayOptions;
 import com.amap.api.maps.model.UrlTileProvider;
 import com.yue.tilemap.R;
@@ -46,7 +47,7 @@ public class TgdGoogleActivity extends AppCompatActivity {
          * 则需要在离线地图下载和使用地图页面都进行路径设置
          * */
         //Demo中为了其他界面可以使用下载的离线地图，使用默认位置存储，屏蔽了自定义设置
-//        MapsInitializer.sdcardDir =OffLineMapUtils.getSdCacheDir(this);
+//		   MapsInitializer.sdcardDir = OffLineMapUtils.getSdCacheDir(this);
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
         mBinding.mapTgdGoogle.onCreate(savedInstanceState);
         if (aMap == null) {
