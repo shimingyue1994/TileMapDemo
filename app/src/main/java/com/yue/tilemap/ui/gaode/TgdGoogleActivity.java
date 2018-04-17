@@ -17,6 +17,8 @@ import java.net.URL;
 
 /**
  * google地图贴图贴在高德地图上
+ * 离线 下载zip 本地解压 然后读取文件
+ * 不知道百度高德的实现原理
  */
 public class TgdGoogleActivity extends AppCompatActivity {
 
