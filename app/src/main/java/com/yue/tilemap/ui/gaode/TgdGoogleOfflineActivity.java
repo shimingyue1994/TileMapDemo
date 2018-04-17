@@ -13,4 +13,3 @@ public class TgdGoogleOfflineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tgd_google_offline);
     }
 }
- v
