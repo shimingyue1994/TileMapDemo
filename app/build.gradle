@@ -77,7 +77,6 @@ dependencies {
 //     支持第三方插件google maps
 //    compile 'org.osmdroid:osmdroid-third-party:(INSERT_VERSION_HERE)'
 
-
     //高德地图
     implementation 'com.amap.api:3dmap:6.1.0'
     implementation 'com.amap.api:location:3.8.0'

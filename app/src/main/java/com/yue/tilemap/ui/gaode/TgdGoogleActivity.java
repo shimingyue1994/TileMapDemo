@@ -57,7 +57,7 @@ public class TgdGoogleActivity extends AppCompatActivity {
     }
 
     /**
-     * 初始化贴片设置 加载离线地图于此雷同，将url换成本地路径即可
+     * 初始化贴片设置 加载离线地图于此雷同，将url换成本地路径即可 断点续传
      */
     private void initTile(Bundle savedInstanceState) {
         aMap.addTileOverlay(new TileOverlayOptions().tileProvider(new UrlTileProvider(256, 256) {
