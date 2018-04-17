@@ -1,5 +1,6 @@
 package com.yue.tilemap.ui.gaode;
 
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -21,7 +22,7 @@ public class TgdGoogleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tgd_google);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_tgd_google);
         initGdMap(savedInstanceState);
     }
 
