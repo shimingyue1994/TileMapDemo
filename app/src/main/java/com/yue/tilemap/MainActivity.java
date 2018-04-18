@@ -20,6 +20,7 @@ import com.yue.tilemap.ui.TMapShowActivity;
 import com.yue.tilemap.ui.TSimpleMapActivity;
 import com.yue.tilemap.ui.gaode.TgdGoogleActivity;
 import com.yue.tilemap.ui.gaode.TgdGoogleOfflineActivity;
+import com.yue.tilemap.ui.other.SymmetricPointActivity;
 
 import junit.framework.Test;
 
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mList.add(new MainItem("测试google图源openstreetmap", "测试google图源openstreetmap" + TGoogleTileActivity.class.getSimpleName(), TGoogleTileActivity.class));
         mList.add(new MainItem("测试google图源--高德地图", "测试google图源高德地图" + TgdGoogleActivity.class.getSimpleName(), TgdGoogleActivity.class));
         mList.add(new MainItem("测试google图源--高德地图--离线地图方式", "测试google图源高德地图--离线地图方式" + TgdGoogleOfflineActivity.class.getSimpleName(), TgdGoogleOfflineActivity.class));
+        mList.add(new MainItem("对称点", "根据一点经纬度 方位角 距离 计算另一点经纬度" + SymmetricPointActivity.class.getSimpleName(), SymmetricPointActivity.class));
     }
 
 
