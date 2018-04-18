@@ -48,7 +48,8 @@
         <activity android:name=".ui.TSimpleMapActivity" />
         <activity android:name=".ui.TGoogleTileActivity" />
         <activity android:name=".ui.gaode.TgdGoogleActivity" />
-        <activity android:name=".ui.gaode.TgdGoogleOfflineActivity"></activity>
+        <activity android:name=".ui.gaode.TgdGoogleOfflineActivity" />
+        <activity android:name=".ui.other.SymmetricPointActivity"></activity>
     </application>
 
 </manifest>
