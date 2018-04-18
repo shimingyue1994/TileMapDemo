@@ -1,11 +1,9 @@
 package com.yue.tilemap.utils;
 
-import com.amap.api.maps.model.LatLng;
-
 /**
- * 地图工具类
+ * 已知一点的经纬度 方位角 距离 求另一点坐标
  */
-public class MapUtils {
+public class LatlngByAngleDistance {
 
 
     /**
@@ -25,7 +23,7 @@ public class MapUtils {
     double Ec;
     double Ed;
 
-    public MapUtils(double longitude, double latitude) {
+    public LatlngByAngleDistance(double longitude, double latitude) {
         m_LoDeg = (int) longitude;
         m_LoMin = (int) ((longitude - m_LoDeg) * 60);
         m_LoSec = (longitude - m_LoDeg - m_LoMin / 60.) * 3600;
@@ -42,7 +40,7 @@ public class MapUtils {
         Ed = Ec * Math.cos(m_RadLa);
     }
 
-    public static String getMyLatLng(MapUtils A, double distance, double angle) {//方法
+    public static String getMyLatLng(LatlngByAngleDistance A, double distance, double angle) {//方法
         double dx = distance * 1000 * Math.sin(Math.toRadians(angle));
         double dy = distance * 1000 * Math.cos(Math.toRadians(angle));
         double bjd = (dx / A.Ed + A.m_RadLo) * 180. / Math.PI;
@@ -50,20 +48,4 @@ public class MapUtils {
         String lnglat = bjd + "," + bwd;
         return lnglat;
     }
-
-
-    /**
-     * 根据一个点的经纬度和距离得到另外一个点的经纬度 可能不太准确
-     *
-     * @param distance
-     * @param latlngA
-     * @param angle：角度
-     * @return
-     */
-    public static LatLng getLatlng(float distance, LatLng latlngA, double angle) {
-        return new LatLng(latlngA.latitude + (distance * Math.cos(angle * Math.PI / 180)) / 111,
-                latlngA.longitude + (distance * Math.sin(angle * Math.PI / 180)) / (111 * Math.cos(latlngA.latitude * Math.PI / 180))
-        );
-    }
-
 }
