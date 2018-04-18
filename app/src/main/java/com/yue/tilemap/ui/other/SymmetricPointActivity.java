@@ -1,10 +1,12 @@
 package com.yue.tilemap.ui.other;
 
 import android.databinding.DataBindingUtil;
+import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.yue.tilemap.R;
 import com.yue.tilemap.databinding.ActivitySymmetricPointBinding;
 
@@ -15,6 +17,7 @@ public class SymmetricPointActivity extends AppCompatActivity {
 
     private ActivitySymmetricPointBinding mBinding;
     private AMap aMap;
+    private MyLocationStyle myLocationStyle;//定位模式
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,24 @@ public class SymmetricPointActivity extends AppCompatActivity {
         mBinding.mapSymmetricPoint.onCreate(savedInstanceState);
         if (aMap == null) {
             aMap = mBinding.mapSymmetricPoint.getMap();
+
+            // 如果要设置定位的默认状态，可以在此处进行设置
+            myLocationStyle = new MyLocationStyle();
+            aMap.setMyLocationStyle(myLocationStyle);
+
+            aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+            aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         }
+
+        /**
+         * 设置定位监听
+         */
+        aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+
+            }
+        });
 
     }
 
