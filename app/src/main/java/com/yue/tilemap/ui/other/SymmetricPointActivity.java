@@ -47,7 +47,7 @@ public class SymmetricPointActivity extends AppCompatActivity {
         aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-//                Toast.makeText(SymmetricPointActivity.this, "定位" + location.getLatitude(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SymmetricPointActivity.this, "定位" + location.getLatitude(), Toast.LENGTH_SHORT).show();
                 if (location.getLatitude() != 0) {
                     // 定位、但不会移动到地图中心点，并且会跟随设备移动。
                     aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
