@@ -4,6 +4,8 @@ import android.databinding.DataBindingUtil;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.model.MyLocationStyle;
@@ -30,13 +32,13 @@ public class SymmetricPointActivity extends AppCompatActivity {
         mBinding.mapSymmetricPoint.onCreate(savedInstanceState);
         if (aMap == null) {
             aMap = mBinding.mapSymmetricPoint.getMap();
-
             // 如果要设置定位的默认状态，可以在此处进行设置
             myLocationStyle = new MyLocationStyle();
-            aMap.setMyLocationStyle(myLocationStyle);
-
+            // 定位、且将视角移动到地图中心点，定位点依照设备方向旋转，  并且会跟随设备移动。
+            myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
             aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
             aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+            aMap.setMyLocationStyle(myLocationStyle);
         }
 
         /**
@@ -45,7 +47,11 @@ public class SymmetricPointActivity extends AppCompatActivity {
         aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-
+//                Toast.makeText(SymmetricPointActivity.this, "定位" + location.getLatitude(), Toast.LENGTH_SHORT).show();
+                if (location.getLatitude() != 0) {
+                    // 定位、但不会移动到地图中心点，并且会跟随设备移动。
+                    aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
+                }
             }
         });
 
