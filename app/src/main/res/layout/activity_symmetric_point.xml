@@ -49,6 +49,7 @@
                 android:id="@+id/spinner_symmetric_method"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:entries="@array/latlngad_method" />
         </LinearLayout>
     </RelativeLayout>
