@@ -15,26 +15,41 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_symmetric_first"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="第一个点" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_symmetric_second"
-                android:layout_width="0dp"
+                <Button
+                    android:id="@+id/btn_symmetric_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第一个点" />
+
+                <Button
+                    android:id="@+id/btn_symmetric_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第二个点" />
+
+                <Button
+                    android:id="@+id/btn_symmetric_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="清除" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spinner_symmetric_method"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="第二个点" />
-
+                android:entries="@array/latlngad_method" />
         </LinearLayout>
     </RelativeLayout>
 

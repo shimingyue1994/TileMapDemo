@@ -5,9 +5,12 @@ import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.yue.tilemap.R;
 import com.yue.tilemap.databinding.ActivitySymmetricPointBinding;
@@ -15,16 +18,22 @@ import com.yue.tilemap.databinding.ActivitySymmetricPointBinding;
 /**
  * 根据一点经纬度、距离、方位角 计算另一点的经纬度
  */
-public class SymmetricPointActivity extends AppCompatActivity {
+public class SymmetricPointActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivitySymmetricPointBinding mBinding;
     private AMap aMap;
     private MyLocationStyle myLocationStyle;//定位模式
 
+    /*定位的点 将基于这个点去计算出另外两个对称点*/
+    private LatLng mLatlngLoc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_symmetric_point);
+        mBinding.btnSymmetricFirst.setOnClickListener(this);
+        mBinding.btnSymmetricSecond.setOnClickListener(this);
+        mBinding.spinnerSymmetricMethod.setOnItemSelectedListener(onItemSelectedListener);
         initMap(savedInstanceState);
     }
 
@@ -47,16 +56,68 @@ public class SymmetricPointActivity extends AppCompatActivity {
         aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                Toast.makeText(SymmetricPointActivity.this, "定位" + location.getLatitude(), Toast.LENGTH_SHORT).show();
                 if (location.getLatitude() != 0) {
                     // 定位、但不会移动到地图中心点，并且会跟随设备移动。
                     aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
+                    mLatlngLoc = new LatLng(location.getLatitude(), location.getLongitude());
                 }
             }
         });
 
     }
 
+    AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            String[] method = getResources().getStringArray(R.array.latlngad_method);
+            Toast.makeText(SymmetricPointActivity.this, "" + method[position], Toast.LENGTH_SHORT).show();
+            switch (position) {
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_symmetric_first://第一个点
+
+                break;
+            case R.id.btn_symmetric_second://第二个点
+
+                break;
+            case R.id.btn_symmetric_clear://清除所有marker
+
+                break;
+        }
+    }
+
+
+    /**
+     * 添加标记点
+     *
+     * @param latLngSource 源点经纬度
+     * @param distance     距离
+     * @param angle        方向角 [0-360]
+     */
+    private void addMark(LatLng latLngSource, double distance, double angle) {
+
+
+    }
 
     @Override
     protected void onDestroy() {
@@ -85,4 +146,5 @@ public class SymmetricPointActivity extends AppCompatActivity {
         //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
         mBinding.mapSymmetricPoint.onSaveInstanceState(outState);
     }
+
 }

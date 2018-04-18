@@ -5,7 +5,7 @@ import com.amap.api.maps.model.LatLng;
 /**
  * 地图工具类
  */
-public class MapUtils2 {
+public class LatlngByAngleDistance3 {
 
 
     /**
