@@ -7,26 +7,28 @@ public class LatlngByAngleDistance2 {
     /*
      * 大地坐标系资料WGS-84 长半径a=6378137 短半径b=6356752.3142 扁率f=1/298.2572236
      */
-    /** 长半径a=6378137 */
+    /**
+     * 长半径a=6378137
+     */
     private double a = 6378137;
-    /** 短半径b=6356752.3142 */
+    /**
+     * 短半径b=6356752.3142
+     */
     private double b = 6356752.3142;
-    /** 扁率f=1/298.2572236 */
+    /**
+     * 扁率f=1/298.2572236
+     */
     private double f = 1 / 298.2572236;
 
     /**
      * 计算另一点经纬度
      *
-     * @param lon
-     *            经度
-     * @param lat
-     *            维度
-     * @param brng
-     *            方位角
-     * @param dist
-     *            距离（米）
+     * @param lon  经度
+     * @param lat  维度
+     * @param brng 方位角
+     * @param dist 距离（米）
      */
-    public void computerThatLonLat(double lon, double lat, double brng, double dist) {
+    public String computerThatLonLat(double lon, double lat, double brng, double dist) {
 
         double alpha1 = rad(brng);
         double sinAlpha1 = Math.sin(alpha1);
@@ -42,9 +44,9 @@ public class LatlngByAngleDistance2 {
         double A = 1 + uSq / 16384 * (4096 + uSq * (-768 + uSq * (320 - 175 * uSq)));
         double B = uSq / 1024 * (256 + uSq * (-128 + uSq * (74 - 47 * uSq)));
 
-        double cos2SigmaM=0;
-        double sinSigma=0;
-        double cosSigma=0;
+        double cos2SigmaM = 0;
+        double sinSigma = 0;
+        double cosSigma = 0;
         double sigma = dist / (b * A), sigmaP = 2 * Math.PI;
         while (Math.abs(sigma - sigmaP) > 1e-12) {
             cos2SigmaM = Math.cos(2 * sigma1 + sigma);
@@ -66,15 +68,16 @@ public class LatlngByAngleDistance2 {
 
         double revAz = Math.atan2(sinAlpha, -tmp); // final bearing
 
-        System.out.println(revAz);
-        System.out.println(lon+deg(L)+","+deg(lat2));
+//        System.out.println(revAz);
+//        System.out.println(lon+deg(L)+","+deg(lat2));
+        return lon + deg(L) + "," + deg(lat2);
+
     }
 
     /**
      * 度换成弧度
      *
-     * @param d
-     *            度
+     * @param d 度
      * @return 弧度
      */
     private double rad(double d) {
@@ -84,8 +87,7 @@ public class LatlngByAngleDistance2 {
     /**
      * 弧度换成度
      *
-     * @param x
-     *            弧度
+     * @param x 弧度
      * @return 度
      */
     private double deg(double x) {
