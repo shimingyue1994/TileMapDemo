@@ -1,7 +1,7 @@
 package com.yue.tilemap.utils;
 
 /**
- * 已知一点的经纬度 方位角 距离 求另一点坐标
+ * 已知一个点A的经纬度坐标，点B相对与A的方位角，B到A的距离，求B的经纬度坐标，用Javascript语言来完成该算法，借用了一下openL
  */
 public class LatlngByAngleDistance2 {
     /*
