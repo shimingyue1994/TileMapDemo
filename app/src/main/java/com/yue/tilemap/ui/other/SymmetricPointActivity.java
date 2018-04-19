@@ -25,6 +25,14 @@ import com.yue.tilemap.utils.LatlngByAngleDistance3;
 import com.yue.tilemap.utils.MapUtils;
 
 /**
+ * *****************
+ * *               * 假设50米
+ * ***************** 直线轨迹
+ * *               *
+ * *****************
+ * <p>
+ * <p>
+ * 实现区域划分（可以先使用百度鹰眼记录轨迹[将角度存储下来]，然后再根据已知轨迹的点集合和角度算法求出区域点集合）
  * 根据一点经纬度、距离、方位角 计算另一点的经纬度
  * 角度计算：计算与当前方向夹角位90度 distance位d米的一个点（经纬度）
  * 假设当前点为x度（与x轴正方向形成的夹角），则与他形成直角90度点的角度（与x轴正方向形成的夹角）为
@@ -144,9 +152,9 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 break;
         }
         Log.i("SymmetricPointActivity", "目标方位角：" + angle + " 目标距离(米)：" + distance);
-        mBinding.tvSymmetricLocbear.setText("当前点的方位角："+mLocation.getBearing());
+        mBinding.tvSymmetricLocbear.setText("当前点的方位角：" + mLocation.getBearing());
         mBinding.tvSymmetricInitad.setText("");
-        mBinding.tvSymmetricInitad.setText("目标方位角：" + (int)angle + "目标距离(米)：" + (int)distance);
+        mBinding.tvSymmetricInitad.setText("目标方位角：" + (int) angle + "目标距离(米)：" + (int) distance);
         if (!TextUtils.isEmpty(latlng)) {
             String lonNewString = latlng.split(",")[0];
             String latNewString = latlng.split(",")[1];
@@ -173,7 +181,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         float distance = AMapUtils.calculateLineDistance(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), latLng);
         double angle = MapUtils.getAngle1(mLocation.getLatitude(), mLocation.getLongitude(), latLng.latitude, latLng.longitude);
         mBinding.tvSymmetricEndad.setText("");
-        mBinding.tvSymmetricEndad.setText("计算后方位角：" + (int)angle + " 计算后距离(米)：" + (int)distance);
+        mBinding.tvSymmetricEndad.setText("计算后方位角：" + (int) angle + " 计算后距离(米)：" + (int) distance);
     }
 
     @Override
