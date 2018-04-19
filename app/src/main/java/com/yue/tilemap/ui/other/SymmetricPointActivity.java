@@ -100,11 +100,14 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_symmetric_first://第一个点
+                //角度
+                double firistAngle = mLocation.getBearing() + 90;
                 Toast.makeText(this, "第一个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
-                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, mLocation.getBearing());
+                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, firistAngle);
                 break;
             case R.id.btn_symmetric_second://第二个点
+                double secondAngle = 360 + (mLocation.getBearing() - 90);
                 Toast.makeText(this, "第二个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
                 addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, mLocation.getBearing());
