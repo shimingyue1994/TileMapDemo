@@ -110,7 +110,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 double secondAngle = 360 + (mLocation.getBearing() - 90);
                 Toast.makeText(this, "第二个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
-                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, mLocation.getBearing());
+                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), secondAngle, mLocation.getBearing());
                 break;
             case R.id.btn_symmetric_clear://清除所有marker
                 aMap.clear();
@@ -143,9 +143,9 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 latlng = LatlngByAngleDistance3.getLatlng(lon, lat, distance3, angle);
                 break;
         }
-        Log.i("SymmetricPointActivity", "方位角：" + angle + "距离(米)：" + distance);
+        Log.i("SymmetricPointActivity", "目标方位角：" + angle + " 目标距离(米)：" + distance);
         mBinding.tvSymmetricInitad.setText("");
-        mBinding.tvSymmetricInitad.setText("方位角：" + angle + "距离(米)：" + distance);
+        mBinding.tvSymmetricInitad.setText("目标方位角：" + angle + "目标距离(米)：" + distance);
         if (!TextUtils.isEmpty(latlng)) {
             String lonNewString = latlng.split(",")[0];
             String latNewString = latlng.split(",")[1];
@@ -172,7 +172,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         float distance = AMapUtils.calculateLineDistance(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), latLng);
         double angle = MapUtils.getAngle1(mLocation.getLatitude(), mLocation.getLongitude(), latLng.latitude, latLng.longitude);
         mBinding.tvSymmetricEndad.setText("");
-        mBinding.tvSymmetricEndad.setText("方位角：" + angle + "距离(米)：" + distance);
+        mBinding.tvSymmetricEndad.setText("计算后方位角：" + angle + " 计算后距离(米)：" + distance);
     }
 
     @Override
