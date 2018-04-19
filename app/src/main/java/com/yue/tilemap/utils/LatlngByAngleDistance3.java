@@ -11,7 +11,7 @@ public class LatlngByAngleDistance3 {
     /**
      * 根据一个点的经纬度、方位角、距离得到另外一个点的经纬度 有误差
      *
-     * @param distance
+     * @param distance 单位 km
      * @param latlngA
      * @param angle：角度
      * @return
@@ -26,7 +26,7 @@ public class LatlngByAngleDistance3 {
     /**
      * @param lon      经度
      * @param lat      纬度
-     * @param distance 距离
+     * @param distance 距离 单位km
      * @param angle    方位角
      * @return
      */
