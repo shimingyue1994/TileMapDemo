@@ -1,5 +1,6 @@
 package com.yue.tilemap.ui.other;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
@@ -18,11 +20,17 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.yue.tilemap.R;
+import com.yue.tilemap.bean.NetBean;
 import com.yue.tilemap.databinding.ActivitySymmetricPointBinding;
+import com.yue.tilemap.service.GdLocationService;
 import com.yue.tilemap.utils.LatlngByAngleDistance;
 import com.yue.tilemap.utils.LatlngByAngleDistance2;
 import com.yue.tilemap.utils.LatlngByAngleDistance3;
 import com.yue.tilemap.utils.MapUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * *****************
@@ -54,6 +62,8 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_symmetric_point);
+        EventBus.getDefault().register(this);
+        startService(new Intent(this, GdLocationService.class));
         mBinding.btnSymmetricFirst.setOnClickListener(this);
         mBinding.btnSymmetricSecond.setOnClickListener(this);
         mBinding.btnSymmetricClear.setOnClickListener(this);
@@ -190,11 +200,23 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         mBinding.tvSymmetricEndad.setText("计算后方位角：" + (int) angle + " 计算后距离(米)：" + (int) distance);
     }
 
+
+    /**
+     * EventBus消息接收处
+     * 实时定位 方位角已开启
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getLocation(AMapLocation aMapLocation) {
+        Toast.makeText(this, "得到经纬度" + aMapLocation.getAltitude(), Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
         mBinding.mapSymmetricPoint.onDestroy();
+        stopService(new Intent(this, GdLocationService.class));
+
     }
 
     @Override

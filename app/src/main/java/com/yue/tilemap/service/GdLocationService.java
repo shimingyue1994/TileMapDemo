@@ -9,6 +9,8 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 
+import org.greenrobot.eventbus.EventBus;
+
 public class GdLocationService extends Service {
 
     //声明mlocationClient对象
@@ -60,7 +62,7 @@ public class GdLocationService extends Service {
     AMapLocationListener aMapLocationListener = new AMapLocationListener() {
         @Override
         public void onLocationChanged(AMapLocation aMapLocation) {
-
+            EventBus.getDefault().postSticky(aMapLocation);
         }
     };
 
