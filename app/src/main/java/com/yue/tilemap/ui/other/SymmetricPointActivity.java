@@ -144,8 +144,9 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 break;
         }
         Log.i("SymmetricPointActivity", "目标方位角：" + angle + " 目标距离(米)：" + distance);
+        mBinding.tvSymmetricLocbear.setText("当前点的方位角："+mLocation.getBearing());
         mBinding.tvSymmetricInitad.setText("");
-        mBinding.tvSymmetricInitad.setText("目标方位角：" + angle + "目标距离(米)：" + distance);
+        mBinding.tvSymmetricInitad.setText("目标方位角：" + (int)angle + "目标距离(米)：" + (int)distance);
         if (!TextUtils.isEmpty(latlng)) {
             String lonNewString = latlng.split(",")[0];
             String latNewString = latlng.split(",")[1];
