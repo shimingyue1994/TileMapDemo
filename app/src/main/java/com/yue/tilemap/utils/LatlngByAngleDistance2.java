@@ -69,6 +69,7 @@ public class LatlngByAngleDistance2 {
         double revAz = Math.atan2(sinAlpha, -tmp); // final bearing
 
 //        System.out.println(revAz);
+        //输出经纬度 先经度后纬度
 //        System.out.println(lon+deg(L)+","+deg(lat2));
         return lon + deg(L) + "," + deg(lat2);
 
