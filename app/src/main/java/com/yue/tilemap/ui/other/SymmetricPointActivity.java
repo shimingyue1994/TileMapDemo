@@ -68,7 +68,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
             // 如果要设置定位的默认状态，可以在此处进行设置
             myLocationStyle = new MyLocationStyle();
             // 定位、且将视角移动到地图中心点，定位点依照设备方向旋转，  并且会跟随设备移动。
-            myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
+            myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);
             aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
             aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
             aMap.setMyLocationStyle(myLocationStyle);
