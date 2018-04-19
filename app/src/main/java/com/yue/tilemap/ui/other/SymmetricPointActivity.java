@@ -110,7 +110,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 double secondAngle = 360 + (mLocation.getBearing() - 90);
                 Toast.makeText(this, "第二个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
-                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), secondAngle, mLocation.getBearing());
+                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, secondAngle);
                 break;
             case R.id.btn_symmetric_clear://清除所有marker
                 aMap.clear();
