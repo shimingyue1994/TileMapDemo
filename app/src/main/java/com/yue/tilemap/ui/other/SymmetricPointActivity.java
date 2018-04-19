@@ -88,6 +88,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         mBinding.mapSymmetricPoint.onCreate(savedInstanceState);
         if (aMap == null) {
             aMap = mBinding.mapSymmetricPoint.getMap();
+            //设置缩放级别
             aMap.animateCamera(CameraUpdateFactory.zoomTo(16f));
             // 如果要设置定位的默认状态，可以在此处进行设置
             myLocationStyle = new MyLocationStyle();
