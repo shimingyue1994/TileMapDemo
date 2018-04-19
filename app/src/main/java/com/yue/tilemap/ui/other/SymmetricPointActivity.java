@@ -1,5 +1,6 @@
 package com.yue.tilemap.ui.other;
 
+import android.Manifest;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.location.Location;
@@ -19,10 +20,13 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yue.tilemap.R;
 import com.yue.tilemap.bean.NetBean;
 import com.yue.tilemap.databinding.ActivitySymmetricPointBinding;
 import com.yue.tilemap.service.GdLocationService;
+import com.yue.tilemap.ui.TSimpleMapActivity;
 import com.yue.tilemap.utils.LatlngByAngleDistance;
 import com.yue.tilemap.utils.LatlngByAngleDistance2;
 import com.yue.tilemap.utils.LatlngByAngleDistance3;
@@ -31,6 +35,9 @@ import com.yue.tilemap.utils.MapUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 
 /**
  * *****************
@@ -49,6 +56,8 @@ import org.greenrobot.eventbus.ThreadMode;
  */
 public class SymmetricPointActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private String TAG = "SymmetricPointActivity";
+
     private ActivitySymmetricPointBinding mBinding;
     private AMap aMap;
     private MyLocationStyle myLocationStyle;//定位模式
@@ -62,6 +71,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_symmetric_point);
+        requestPermissions();
         EventBus.getDefault().register(this);
         startService(new Intent(this, GdLocationService.class));
         mBinding.btnSymmetricFirst.setOnClickListener(this);
@@ -204,6 +214,47 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getLocation(AMapLocation aMapLocation) {
         Toast.makeText(this, "得到经纬度" + aMapLocation.getAltitude() + " 方位角：" + aMapLocation.getBearing(), Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void requestPermissions() {
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions
+                .requestEachCombined(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                .subscribe(new Consumer<Permission>() {
+                               @Override
+                               public void accept(Permission permission) throws Exception {
+                                   if (permission.granted) {
+                                       // 所有权限都已授权
+//                                       Toast.makeText(TSimpleMapActivity.this, "权限请求成功", Toast.LENGTH_SHORT).show();
+                                   } else if (permission.shouldShowRequestPermissionRationale) {
+                                       // 至少有一个权限未被授予 没有选中 [不在询问按钮]
+                                       Toast.makeText(SymmetricPointActivity.this, "有权限未申请成功" + permission.name, Toast.LENGTH_SHORT).show();
+                                       if (permission.name.equals(Manifest.permission.ACCESS_COARSE_LOCATION) || permission.name.equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                                           Toast.makeText(SymmetricPointActivity.this, "定位权限未被授予", Toast.LENGTH_SHORT).show();
+                                       } else if (permission.name.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                                           Toast.makeText(SymmetricPointActivity.this, "存储权限未被授予", Toast.LENGTH_SHORT).show();
+                                       }
+                                   } else {
+                                       // 至少有一个权限未被授予 选中了[不在询问按钮]
+                                   }
+                               }
+                           }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable t) {
+                                   Log.e(TAG, "onError", t);
+                                   Toast.makeText(SymmetricPointActivity.this, "权限请求错误", Toast.LENGTH_SHORT).show();
+                               }
+                           },
+                        new Action() {
+                            @Override
+                            public void run() {
+                                Log.i(TAG, "OnComplete");
+//                                Toast.makeText(TSimpleMapActivity.this, "权限请求完成", Toast.LENGTH_SHORT).show();
+                            }
+                        });
     }
 
     @Override
