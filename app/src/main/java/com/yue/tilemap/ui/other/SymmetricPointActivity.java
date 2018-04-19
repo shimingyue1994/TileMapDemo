@@ -27,6 +27,8 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     /*定位的点 将基于这个点去计算出另外两个对称点*/
     private LatLng mLatlngLoc;
 
+    private int type = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
             public void onMyLocationChange(Location location) {
                 if (location.getLatitude() != 0) {
                     // 定位、但不会移动到地图中心点，并且会跟随设备移动。
-                    aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
+//                    aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
                     mLatlngLoc = new LatLng(location.getLatitude(), location.getLongitude());
                 }
             }
@@ -70,19 +72,8 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             String[] method = getResources().getStringArray(R.array.latlngad_method);
-            Toast.makeText(SymmetricPointActivity.this, "" + method[position], Toast.LENGTH_SHORT).show();
-            switch (position) {
-                case 0:
-
-                    break;
-                case 1:
-
-                    break;
-
-                case 2:
-
-                    break;
-            }
+            Toast.makeText(SymmetricPointActivity.this, "position" + position + " " + method[position], Toast.LENGTH_SHORT).show();
+            type = position;
         }
 
         @Override
