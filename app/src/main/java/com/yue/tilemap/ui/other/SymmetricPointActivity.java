@@ -173,7 +173,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         float distance = AMapUtils.calculateLineDistance(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), latLng);
         double angle = MapUtils.getAngle1(mLocation.getLatitude(), mLocation.getLongitude(), latLng.latitude, latLng.longitude);
         mBinding.tvSymmetricEndad.setText("");
-        mBinding.tvSymmetricEndad.setText("计算后方位角：" + angle + " 计算后距离(米)：" + distance);
+        mBinding.tvSymmetricEndad.setText("计算后方位角：" + (int)angle + " 计算后距离(米)：" + (int)distance);
     }
 
     @Override
