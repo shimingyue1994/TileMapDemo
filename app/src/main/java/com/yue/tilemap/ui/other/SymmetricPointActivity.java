@@ -4,16 +4,23 @@ import android.databinding.DataBindingUtil;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.yue.tilemap.R;
 import com.yue.tilemap.databinding.ActivitySymmetricPointBinding;
+import com.yue.tilemap.utils.LatlngByAngleDistance;
+import com.yue.tilemap.utils.LatlngByAngleDistance2;
+import com.yue.tilemap.utils.LatlngByAngleDistance3;
 
 /**
  * 根据一点经纬度、距离、方位角 计算另一点的经纬度
@@ -25,7 +32,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     private MyLocationStyle myLocationStyle;//定位模式
 
     /*定位的点 将基于这个点去计算出另外两个对称点*/
-    private LatLng mLatlngLoc;
+    private Location mLocation;
 
     private int type = 0;
 
@@ -61,7 +68,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 if (location.getLatitude() != 0) {
                     // 定位、但不会移动到地图中心点，并且会跟随设备移动。
 //                    aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
-                    mLatlngLoc = new LatLng(location.getLatitude(), location.getLongitude());
+                    mLocation = location;
                 }
             }
         });
@@ -86,28 +93,66 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_symmetric_first://第一个点
-
+                /*正前方测试*/
+                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, mLocation.getBearing());
                 break;
             case R.id.btn_symmetric_second://第二个点
-
+                /*正前方测试*/
+                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, mLocation.getBearing());
                 break;
             case R.id.btn_symmetric_clear://清除所有marker
-
+                aMap.clear();
                 break;
         }
     }
 
+    /**
+     * 选择使用那种算法
+     *
+     * @param lon      经度 （china-长）
+     * @param lat      纬度 （china-短）
+     * @param distance 距离
+     * @param angle    方位角
+     */
+    private void addMarkType(double lon, double lat, double distance, double angle) {
+        String latlng = "";
+        switch (type) {
+            case 0:
+                LatlngByAngleDistance latlngByAngleDistance = new LatlngByAngleDistance(lon, lat);
+                latlng = LatlngByAngleDistance.getMyLatLng(latlngByAngleDistance, distance, angle);
+                break;
+            case 1:
+                LatlngByAngleDistance2 latlngByAngleDistance2 = new LatlngByAngleDistance2();
+                latlng = latlngByAngleDistance2.computerThatLonLat(lon, lat, angle, distance);
+                break;
+            case 2:
+                latlng = LatlngByAngleDistance3.getLatlng(lon, lat, distance, angle);
+                break;
+        }
+
+        if (!TextUtils.isEmpty(latlng)) {
+            String lonNewString = latlng.split(",")[0];
+            String latNewString = latlng.split(",")[1];
+            double lonNew = Double.parseDouble(lonNewString);
+            double latNew = Double.parseDouble(latNewString);
+            addMark(lonNew,latNew);
+        } else {
+            Toast.makeText(this, "经纬度生成失败", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     /**
-     * 添加标记点
+     * 添加经纬度
      *
-     * @param latLngSource 源点经纬度
-     * @param distance     距离
-     * @param angle        方向角 [0-360]
+     * @param lon 经度
+     * @param lat 纬度
      */
-    private void addMark(LatLng latLngSource, double distance, double angle) {
-
-
+    private void addMark(double lon, double lat) {
+        LatLng latLng = new LatLng(lat, lon);
+        MarkerOptions markerOption = new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                .position(latLng)
+                .draggable(false);
+        Marker marker = aMap.addMarker(markerOption);
     }
 
     @Override
