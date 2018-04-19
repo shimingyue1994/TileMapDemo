@@ -110,12 +110,18 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
             case R.id.btn_symmetric_first://第一个点
                 //角度
                 double firistAngle = mLocation.getBearing() + 90;
+                if (firistAngle >= 360) {//角度超过360的问题
+                    firistAngle = firistAngle - 360;
+                }
                 Toast.makeText(this, "第一个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
                 addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, firistAngle);
                 break;
             case R.id.btn_symmetric_second://第二个点
                 double secondAngle = 360 + (mLocation.getBearing() - 90);
+                if (secondAngle >= 360) {//角度超过360的问题
+                    secondAngle = secondAngle - 360;
+                }
                 Toast.makeText(this, "第二个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
                 addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, secondAngle);
