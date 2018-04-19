@@ -63,7 +63,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     private MyLocationStyle myLocationStyle;//定位模式
 
     /*定位的点 将基于这个点去计算出另外两个对称点*/
-    private Location mLocation;
+    private AMapLocation mLocation;
 
     private int type = 0;
 
@@ -100,7 +100,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                mLocation = location;
+//                mLocation = location;
             }
         });
 
@@ -213,9 +213,15 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getLocation(AMapLocation aMapLocation) {
-        Toast.makeText(this, "得到经纬度" +
-                aMapLocation.getAltitude() + " 方位角：" +
-                aMapLocation.getBearing() + " 错误码：" + aMapLocation.getErrorCode(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "得到经纬度" +
+//                        aMapLocation.getLatitude() + " 方位角：" +
+//                        aMapLocation.getBearing() + " 错误码：" +
+//                        aMapLocation.getErrorCode(),
+//                Toast.LENGTH_SHORT).show();
+        mLocation = aMapLocation;
+        if (mLocation == null || mLocation.getLatitude() == 0.0) {
+            Toast.makeText(this, "定位失败" + mLocation.getErrorCode() + mLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
+        }
     }
 
 
