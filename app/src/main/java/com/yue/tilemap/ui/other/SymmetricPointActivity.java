@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
@@ -21,6 +22,7 @@ import com.yue.tilemap.databinding.ActivitySymmetricPointBinding;
 import com.yue.tilemap.utils.LatlngByAngleDistance;
 import com.yue.tilemap.utils.LatlngByAngleDistance2;
 import com.yue.tilemap.utils.LatlngByAngleDistance3;
+import com.yue.tilemap.utils.MapUtils;
 
 /**
  * 根据一点经纬度、距离、方位角 计算另一点的经纬度
@@ -46,6 +48,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_symmetric_point);
         mBinding.btnSymmetricFirst.setOnClickListener(this);
         mBinding.btnSymmetricSecond.setOnClickListener(this);
+        mBinding.btnSymmetricClear.setOnClickListener(this);
         mBinding.spinnerSymmetricMethod.setOnItemSelectedListener(onItemSelectedListener);
         initMap(savedInstanceState);
     }
@@ -97,10 +100,12 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_symmetric_first://第一个点
+                Toast.makeText(this, "第一个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
                 addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, mLocation.getBearing());
                 break;
             case R.id.btn_symmetric_second://第二个点
+                Toast.makeText(this, "第二个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
                 addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, mLocation.getBearing());
                 break;
@@ -119,7 +124,6 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
      * @param angle    方位角
      */
     private void addMarkType(double lon, double lat, double distance, double angle) {
-
         String latlng = "";
         switch (type) {
             case 0:
@@ -136,7 +140,8 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 latlng = LatlngByAngleDistance3.getLatlng(lon, lat, distance3, angle);
                 break;
         }
-        Log.i("SymmetricPointActivity", "方位角：" + angle + "距离米" + distance);
+        Log.i("SymmetricPointActivity", "方位角：" + angle + "距离(米)：" + distance);
+        mBinding.tvSymmetricInitad.setText("方位角：" + angle + "距离(米)：" + distance);
         if (!TextUtils.isEmpty(latlng)) {
             String lonNewString = latlng.split(",")[0];
             String latNewString = latlng.split(",")[1];
@@ -160,6 +165,9 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 .position(latLng)
                 .draggable(false);
         Marker marker = aMap.addMarker(markerOption);
+        float distance = AMapUtils.calculateLineDistance(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), latLng);
+        double angle = MapUtils.getAngle1(mLocation.getLatitude(), mLocation.getLongitude(), latLng.latitude, latLng.longitude);
+        mBinding.tvSymmetricEndad.setText("方位角：" + angle + "距离(米)：" + distance);
     }
 
     @Override
