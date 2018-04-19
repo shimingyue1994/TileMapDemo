@@ -141,6 +141,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 break;
         }
         Log.i("SymmetricPointActivity", "方位角：" + angle + "距离(米)：" + distance);
+        mBinding.tvSymmetricInitad.setText("");
         mBinding.tvSymmetricInitad.setText("方位角：" + angle + "距离(米)：" + distance);
         if (!TextUtils.isEmpty(latlng)) {
             String lonNewString = latlng.split(",")[0];
@@ -167,6 +168,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         Marker marker = aMap.addMarker(markerOption);
         float distance = AMapUtils.calculateLineDistance(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), latLng);
         double angle = MapUtils.getAngle1(mLocation.getLatitude(), mLocation.getLongitude(), latLng.latitude, latLng.longitude);
+        mBinding.tvSymmetricEndad.setText("");
         mBinding.tvSymmetricEndad.setText("方位角：" + angle + "距离(米)：" + distance);
     }
 
