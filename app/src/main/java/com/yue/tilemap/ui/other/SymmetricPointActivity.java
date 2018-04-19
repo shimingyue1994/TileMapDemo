@@ -207,7 +207,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getLocation(AMapLocation aMapLocation) {
-        Toast.makeText(this, "得到经纬度" + aMapLocation.getAltitude(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "得到经纬度" + aMapLocation.getAltitude()+" 方位角："+aMapLocation.getBearing(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
