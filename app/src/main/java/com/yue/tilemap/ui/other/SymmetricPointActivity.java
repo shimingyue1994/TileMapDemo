@@ -24,6 +24,10 @@ import com.yue.tilemap.utils.LatlngByAngleDistance3;
 
 /**
  * 根据一点经纬度、距离、方位角 计算另一点的经纬度
+ * 角度计算：计算与当前方向夹角位90度 distance位d米的一个点（经纬度）
+ * 假设当前点为x度（与x轴正方向形成的夹角），则与他形成直角90度点的角度（与x轴正方向形成的夹角）为
+ * 1.[360+(x+90)]
+ * 2.[x+90]
  */
 public class SymmetricPointActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -135,7 +139,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
             String latNewString = latlng.split(",")[1];
             double lonNew = Double.parseDouble(lonNewString);
             double latNew = Double.parseDouble(latNewString);
-            addMark(lonNew,latNew);
+            addMark(lonNew, latNew);
         } else {
             Toast.makeText(this, "经纬度生成失败", Toast.LENGTH_SHORT).show();
         }
