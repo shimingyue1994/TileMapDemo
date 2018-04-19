@@ -232,8 +232,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
 //                        aMapLocation.getErrorCode(),
 //                Toast.LENGTH_SHORT).show();
         mLocation = aMapLocation;
-//        mBinding.tvSymmetricLoccurrbear.setText("当前点的方位角：" + mLocation.getBearing());
-        Toast.makeText(this, "当前点方位角" + mLocation.getBearing(), Toast.LENGTH_SHORT).show();
+        mBinding.tvSymmetricLoccurrbear.setText("当前点的方位角：" + mLocation.getBearing());
         if (mLocation == null || mLocation.getLatitude() == 0.0) {
             Toast.makeText(this, "定位失败" + mLocation.getErrorCode() + mLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
         }
