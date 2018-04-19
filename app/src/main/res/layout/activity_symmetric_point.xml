@@ -50,6 +50,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/latlngad_method" />
+
+            <TextView
+                android:id="@+id/tv_symmetric_initad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:hint="初始角度距离" />
+
+            <TextView
+                android:id="@+id/tv_symmetric_endad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:hint="求出点后最终角度距离" />
+
         </LinearLayout>
     </RelativeLayout>
 

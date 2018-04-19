@@ -136,7 +136,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 latlng = LatlngByAngleDistance3.getLatlng(lon, lat, distance3, angle);
                 break;
         }
-        Log.i("SymmetricPointActivity", "方位角：" + angle + "距离%d米" + distance);
+        Log.i("SymmetricPointActivity", "方位角：" + angle + "距离米" + distance);
         if (!TextUtils.isEmpty(latlng)) {
             String lonNewString = latlng.split(",")[0];
             String latNewString = latlng.split(",")[1];
