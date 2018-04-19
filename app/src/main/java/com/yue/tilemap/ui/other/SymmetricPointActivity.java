@@ -90,11 +90,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         aMap.setOnMyLocationChangeListener(new AMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                if (location.getLatitude() != 0) {
-                    // 定位、但不会移动到地图中心点，并且会跟随设备移动。
-//                    aMap.setMyLocationStyle(myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER));
-                    mLocation = location;
-                }
+                mLocation = location;
             }
         });
 
@@ -207,7 +203,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getLocation(AMapLocation aMapLocation) {
-        Toast.makeText(this, "得到经纬度" + aMapLocation.getAltitude()+" 方位角："+aMapLocation.getBearing(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "得到经纬度" + aMapLocation.getAltitude() + " 方位角：" + aMapLocation.getBearing(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
