@@ -115,25 +115,28 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
      *
      * @param lon      经度 （china-长）
      * @param lat      纬度 （china-短）
-     * @param distance 距离
+     * @param distance 距离 单位（米）
      * @param angle    方位角
      */
     private void addMarkType(double lon, double lat, double distance, double angle) {
+
         String latlng = "";
         switch (type) {
             case 0:
                 LatlngByAngleDistance latlngByAngleDistance = new LatlngByAngleDistance(lon, lat);
-                latlng = LatlngByAngleDistance.getMyLatLng(latlngByAngleDistance, distance, angle);
+                double distance0 = distance / 1000;
+                latlng = LatlngByAngleDistance.getMyLatLng(latlngByAngleDistance, distance0, angle);
                 break;
             case 1:
                 LatlngByAngleDistance2 latlngByAngleDistance2 = new LatlngByAngleDistance2();
                 latlng = latlngByAngleDistance2.computerThatLonLat(lon, lat, angle, distance);
                 break;
             case 2:
-                latlng = LatlngByAngleDistance3.getLatlng(lon, lat, distance, angle);
+                double distance3 = distance / 1000;
+                latlng = LatlngByAngleDistance3.getLatlng(lon, lat, distance3, angle);
                 break;
         }
-
+        Log.i("SymmetricPointActivity", "方位角：" + angle + "距离%d米" + distance);
         if (!TextUtils.isEmpty(latlng)) {
             String lonNewString = latlng.split(",")[0];
             String latNewString = latlng.split(",")[1];
