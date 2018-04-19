@@ -187,7 +187,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 break;
         }
         Log.i("SymmetricPointActivity", "目标方位角：" + angle + " 目标距离(米)：" + distance);
-        mBinding.tvSymmetricLocbear.setText("当前点的方位角：" + mLocation.getBearing());
+        mBinding.tvSymmetricLocbear.setText("添加时定位点的方位角：" + mLocation.getBearing());
         mBinding.tvSymmetricInitad.setText("");
         mBinding.tvSymmetricInitad.setText("目标方位角：" + (int) angle + "目标距离(米)：" + (int) distance);
         if (!TextUtils.isEmpty(latlng)) {
@@ -232,6 +232,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
 //                        aMapLocation.getErrorCode(),
 //                Toast.LENGTH_SHORT).show();
         mLocation = aMapLocation;
+        mBinding.tvSymmetricLoccurrbear.setText("当前点的方位角：" + mLocation.getBearing());
         if (mLocation == null || mLocation.getLatitude() == 0.0) {
             Toast.makeText(this, "定位失败" + mLocation.getErrorCode() + mLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
         }
