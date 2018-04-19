@@ -49,7 +49,12 @@
         <activity android:name=".ui.TGoogleTileActivity" />
         <activity android:name=".ui.gaode.TgdGoogleActivity" />
         <activity android:name=".ui.gaode.TgdGoogleOfflineActivity" />
-        <activity android:name=".ui.other.SymmetricPointActivity"></activity>
+        <activity android:name=".ui.other.SymmetricPointActivity" />
+
+        <service
+            android:name=".service.GdLocationService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
