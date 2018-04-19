@@ -16,6 +16,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
@@ -61,6 +62,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
 
     private ActivitySymmetricPointBinding mBinding;
     private AMap aMap;
+    private UiSettings mUiSettings;
     private MyLocationStyle myLocationStyle;//定位模式
 
     /*定位的点 将基于这个点去计算出另外两个对称点*/
@@ -97,6 +99,9 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
             aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
             aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
             aMap.setMyLocationStyle(myLocationStyle);
+
+            mUiSettings = aMap.getUiSettings();
+            mUiSettings.setScaleControlsEnabled(true);
         }
 
         /**
