@@ -2,6 +2,7 @@ package com.yue.tilemap.utils;
 
 /**
  * 已知一点的经纬度 方位角 距离 求另一点坐标
+ * 经测试  这一算法更精确点
  */
 public class LatlngByAngleDistance {
 
