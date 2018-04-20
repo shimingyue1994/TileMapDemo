@@ -144,7 +144,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 }
                 Toast.makeText(this, "第一个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
-                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, firistAngle);
+                addMarkType(v, mLocation.getLongitude(), mLocation.getLatitude(), 50, firistAngle);
                 break;
             case R.id.btn_symmetric_second://第二个点
                 double secondAngle = 360 + (mLocation.getBearing() - 90);
@@ -153,7 +153,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 }
                 Toast.makeText(this, "第二个点", Toast.LENGTH_SHORT).show();
                 /*正前方测试*/
-                addMarkType(mLocation.getLongitude(), mLocation.getLatitude(), 50, secondAngle);
+                addMarkType(v, mLocation.getLongitude(), mLocation.getLatitude(), 50, secondAngle);
                 break;
             case R.id.btn_symmetric_clear://清除所有marker
                 aMap.clear();
@@ -169,7 +169,7 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
      * @param distance 距离 单位（米）
      * @param angle    方位角
      */
-    private void addMarkType(double lon, double lat, double distance, double angle) {
+    private void addMarkType(View v, double lon, double lat, double distance, double angle) {
         String latlng = "";
         switch (type) {
             case 0:
@@ -185,6 +185,13 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
                 double distance3 = distance / 1000;
                 latlng = LatlngByAngleDistance3.getLatlng(lon, lat, distance3, angle);
                 break;
+        }
+        mBinding.tvSymmetricLatlngloc.setText("当前点经纬度：" + lon + "," + lat);
+
+        if (v.getId() == R.id.btn_symmetric_first) {
+            mBinding.tvSymmetricLatlng1.setText("第一个点的经纬度：" + latlng);
+        } else if (v.getId() == R.id.btn_symmetric_second) {
+            mBinding.tvSymmetricLatlng2.setText("第二个点的经纬度：" + latlng);
         }
         Log.i("SymmetricPointActivity", "目标方位角：" + angle + " 目标距离(米)：" + distance);
         mBinding.tvSymmetricLocbear.setText("添加时定位点的方位角：" + mLocation.getBearing());

@@ -67,6 +67,7 @@
                 android:layout_marginTop="3dp"
                 android:hint="添加时定位点方位角"
                 android:textColor="@color/colorAccent" />
+
             <TextView
                 android:id="@+id/tv_symmetric_initad"
                 android:layout_width="wrap_content"
@@ -81,6 +82,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:hint="求出点后最终角度距离"
+                android:textColor="@color/colorAccent" />
+
+
+            <TextView
+                android:id="@+id/tv_symmetric_latlngloc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:hint="当前点经纬度"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tv_symmetric_latlng1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:hint="第一个点经纬度"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tv_symmetric_latlng2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:hint="第二个点经纬度"
                 android:textColor="@color/colorAccent" />
 
         </LinearLayout>
