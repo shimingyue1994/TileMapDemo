@@ -41,6 +41,12 @@ public class LatlngByAngleDistance {
         Ed = Ec * Math.cos(m_RadLa);
     }
 
+    /**
+     * @param A
+     * @param distance 距离
+     * @param angle    方位角
+     * @return 返回格式 经度,纬度  示例 121.123124,35.132123
+     */
     public static String getMyLatLng(LatlngByAngleDistance A, double distance, double angle) {//方法
         double dx = distance * 1000 * Math.sin(Math.toRadians(angle));
         double dy = distance * 1000 * Math.cos(Math.toRadians(angle));
