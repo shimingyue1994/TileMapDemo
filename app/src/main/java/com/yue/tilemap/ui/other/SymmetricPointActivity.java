@@ -316,4 +316,83 @@ public class SymmetricPointActivity extends AppCompatActivity implements View.On
         mBinding.mapSymmetricPoint.onSaveInstanceState(outState);
     }
 
+
+    //            }
+//            else {//道路添加
+//                LatlngByAngleDistance2 latlngByAngleDistance2 = new LatlngByAngleDistance2();
+//                for (int i = 0; i < list.size(); i++) {
+//                    /*此for循环计算上行点的经纬度*/
+//                    /**
+//                     * ***************** --->上行
+//                     * *               * 假设50米
+//                     * *******>****>**** 直线轨迹和方向>
+//                     * *               * 假设50米
+//                     * ***************** --->下行
+//                     */
+//
+//                    AreaPositionListDataBean bean = list.get(i);
+//                    //当前点方向与其90度夹角点的度数，亦是两点连线与x中正方向上形成的夹角的度数
+//                    double upAngle = bean.getBearing() + 90;
+//                    if (upAngle >= 360) {//角度超过360的问题
+//                        upAngle = upAngle - 360;
+//                    }
+//                    /*先经度lng后纬度lat 以逗号隔开*/
+////                    String latlng = latlngByAngleDistance2.computerThatLonLat(bean.getLng(), bean.getLat(), upAngle, 50);
+//                    LatlngByAngleDistance latlngByAngleDistance = new LatlngByAngleDistance(bean.getLng(), bean.getLat());
+//                    double distance0 = 50 / 1000;
+//                    String latlng = LatlngByAngleDistance.getMyLatLng(latlngByAngleDistance, distance0, upAngle);
+//                    if (!TextUtils.isEmpty(latlng)) {
+//                        String lonNewString = latlng.split(",")[0];
+//                        String latNewString = latlng.split(",")[1];
+//                        double lonNew = Double.parseDouble(lonNewString);
+//                        double latNew = Double.parseDouble(latNewString);
+//                        //将高德高德坐标添加到字段内 google gps gaode都将用此数据作为字段传递到后台
+//                        sb.append(latlng);
+//                        sb.append("|");
+//                        //下面拼接百度坐标
+//                        sbBaidu.append(CoordinateTransformation.GCJ_02ToBaidu(lonNew, latNew).replace(";", ","));
+//                        sbBaidu.append("|");
+//                    } else {
+//                        Toast.makeText(this, "经纬度生成失败", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                }
+//
+//                for (int i = list.size() - 1; i >= 0; i--) {
+//                    /*添加下行的点 与上面for循环的数据相对 最后头尾相连 形成封锁区域*/
+//
+//                    AreaPositionListDataBean bean = list.get(i);
+//                    //当前点方向与其90度夹角点的度数，亦是两点连线与x中正方向上形成的夹角的度数
+//                    double lowerAngle = 360 + (bean.getBearing() - 90);
+//                    if (lowerAngle >= 360) {
+//                        lowerAngle = lowerAngle - 360;
+//                    }
+//                    /*先经度lng后纬度lat 以逗号隔开*/
+////                    String latlng = latlngByAngleDistance2.computerThatLonLat(bean.getLng(), bean.getLat(), lowerAngle, 50);
+//                    LatlngByAngleDistance latlngByAngleDistance = new LatlngByAngleDistance(bean.getLng(), bean.getLat());
+//                    double distance0 = 50 / 1000;
+//                    String latlng = LatlngByAngleDistance.getMyLatLng(latlngByAngleDistance, distance0, lowerAngle);
+//                    if (!TextUtils.isEmpty(latlng)) {
+//                        String lonNewString = latlng.split(",")[0];
+//                        String latNewString = latlng.split(",")[1];
+//                        double lonNew = Double.parseDouble(lonNewString);
+//                        double latNew = Double.parseDouble(latNewString);
+//                        //将高德高德坐标添加到字段内 google gps gaode都将用此数据作为字段传递到后台
+//                        sb.append(latlng);
+//                        if (i > 0) {
+//                            sb.append("|");
+//                        }
+//                        //下面拼接百度坐标
+//                        sbBaidu.append(CoordinateTransformation.GCJ_02ToBaidu(lonNew, latNew).replace(";", ","));
+//                        if (i > 0) {
+//                            sbBaidu.append("|");
+//                        }
+//                    } else {
+//                        Toast.makeText(this, "经纬度生成失败", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                }
+//
+//            }
+
 }
